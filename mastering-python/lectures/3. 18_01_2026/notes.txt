@@ -1,0 +1,15 @@
+
+
+* Primary Data type: 
+ --> primitive data type 
+  * int 
+  * float 
+  * str 
+  * boolean
+
+* Non Primitive Data Type 
+  * list 
+  * tuple
+  * set 
+  * dict --> dictionary
+

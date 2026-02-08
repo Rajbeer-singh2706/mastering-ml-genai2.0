@@ -1,0 +1,171 @@
+# create virtual environment
+option-1 : uv venv
+option-2 : uv venv environment_name
+
+# Run python file (.py)
+option-1 : uv run python file.py
+option-2 : 
+          Step 1 : environment_name\Scripts\activate
+	  Step 2 : python file.py
+
+# if kernels keep looping in "detecting"
+
+run this command after activating your environment in terminal : 
+command-1 : python -m ensurepip --upgrade
+command-2 : python -m pip install ipykernel
+
+
+#######################################################################
+# whereever u have created venv that level folder u need to open in 
+# vscode , otherwise u will face issue 
+
+E:\2.0Ultimate_GENAI> 
+uv python install 3.9
+uv python pin 3.9
+uv python 
+uv venv level01_venv
+
+## Now create a notebook 
+## select a kernel on top right 
+
+## run the codebase (UV RUN )
+cd  E:\2.0Ultimate_GENAI\mastering-ml-genai2.0\level01\lectures\17_01_26
+$ uv run python .\code.py
+
+####### using VENV 
+activate the venv 
+$ cd  E:\2.0Ultimate_GENAI
+$ level01_venv\Scripts\activate
+$ deactivate 
+
+
+## #
+pip install ipykernel
+
+######## Set the Default Profile #####################
+1. CLTRL + SHIFT + P 
+2. Terminal : Select Default Profile 
+3. Command Prompt 
+
+
+######## set the interpreter , if ur VENV is in different location #####################
+1. CLTRL + SHIFT + P 
+2. Python: Select Interpreter 
+3. 
+
+
+### VSCODE Extension 
+1. THEMES : CYBERPUNK 
+2. Python 
+
+
+
+Background
+----------
+To execute Jupyter notebooks (.ipynb), Python requires an ipykernel.
+For .py files, ipykernel is not required, which is why this issue is often confusing.
+
+My Setup
+--------
+Workspace path:
+D:\singh\Learnings\KrishNaik\UDS2.0\Live\
+
+VS Code was opened from the Live folder (parent directory).
+
+Steps performed:
+1. uv python pin 3.12
+2. uv venv .01172026-venv
+3. Created a notebook (2.ipynb) with:
+   a = 12
+4. Clicked “Select Kernel”
+
+Observed behavior:
+- The virtual environment (.01172026-venv) did NOT appear
+- VS Code defaulted to:
+  AppData\Roaming\uv\python\cpython-3.12.12-windows-x86_64-none\python.exe
+
+5. Pressed Shift + Enter to run the cell
+6. VS Code prompted to install ipykernel
+7. Clicked Install
+8. Same error appeared again:
+
+Running cells with 'Python 3.12.12' requires the ipykernel package.
+Command:
+c:/Users/Pc/AppData/Roaming/uv/python/cpython-3.12.12-windows-x86_64-none/python.exe
+-m pip install ipykernel -U --user --force-reinstall
+
+
+Root Cause
+----------
+Although VS Code prompts to install ipykernel, it does NOT install it into the project
+virtual environment.
+
+VS Code installs ipykernel using the --user flag, which places it in:
+%APPDATA%\Python\Python312\site-packages
+
+As a result:
+- ipykernel is installed globally (user site-packages)
+- It is NOT installed inside the project venv
+- The venv still does not have ipykernel
+- Jupyter cannot start a kernel for the notebook
+
+Important note:
+Selecting a Python interpreter is NOT the same as registering a Jupyter kernel.
+Jupyter only runs registered kernels.
+
+
+Fix — Option 1 (Works in all cases)
+----------------------------------
+Step 1: Activate the virtual environment
+
+.01172026-venv\Scripts\activate
+
+Step 2: Install ipykernel inside the venv
+
+uv pip install ipykernel
+
+Step 3: Tell VS Code where the venv interpreter is
+
+1. Press Ctrl + Shift + P
+2. Select “Python: Select Interpreter”
+3. Choose “Enter Interpreter Path”
+4. Browse to:
+   .01172026-venv\Scripts\python.exe
+5. Close VS Code
+6. Reopen VS Code
+7. Open the notebook
+8. Click “Select Kernel” and choose the venv
+
+Step 4: Run the notebook
+
+Shift + Enter
+
+The cell should now execute successfully.
+
+
+Fix — Option 2 (Recommended Project Structure)
+---------------------------------------------
+VS Code auto-discovers virtual environments only if:
+1. The venv is named:
+   - .venv
+   - venv
+   - <project-name>-venv
+2. The venv is directly under the workspace root
+3. VS Code is opened at that root
+
+Example (works automatically):
+
+01172026/
+├── .01172026-venv/
+├── 1.py
+├── 2.ipynb
+
+If VS Code is opened at the parent folder:
+
+Live/
+├── 01172026/
+│   ├── .01172026-venv/
+
+VS Code does NOT recurse into subfolders.
+The venv will not be detected.
+In this case, use Option 1.
