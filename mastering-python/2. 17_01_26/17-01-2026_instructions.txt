@@ -1,6 +1,7 @@
 # create virtual environment
 option-1 : uv venv
 option-2 : uv venv environment_name
+option-2 : uv venv level01_venv
 
 # Run python file (.py)
 option-1 : uv run python file.py
@@ -19,11 +20,24 @@ command-2 : python -m pip install ipykernel
 # whereever u have created venv that level folder u need to open in 
 # vscode , otherwise u will face issue 
 
-E:\2.0Ultimate_GENAI> 
-uv python install 3.9
-uv python pin 3.9
+E:\UDSUltimate2.0_repo>
+uv python install 3.14.2
+uv python pin 3.14.2
 uv python 
-uv venv level01_venv
+uv venv level01
+cd level01
+uv init
+
+####### using VENV 
+activate the venv 
+$ level01_venv\Scripts\activate
+$ deactivate 
+
+
+
+##### ADD ipykernel ###########
+uv add ipykernel
+uv add pandas
 
 ## Now create a notebook 
 ## select a kernel on top right 
@@ -31,16 +45,6 @@ uv venv level01_venv
 ## run the codebase (UV RUN )
 cd  E:\2.0Ultimate_GENAI\mastering-ml-genai2.0\level01\lectures\17_01_26
 $ uv run python .\code.py
-
-####### using VENV 
-activate the venv 
-$ cd  E:\2.0Ultimate_GENAI
-$ level01_venv\Scripts\activate
-$ deactivate 
-
-
-## #
-pip install ipykernel
 
 ######## Set the Default Profile #####################
 1. CLTRL + SHIFT + P 
