@@ -96,5 +96,83 @@ st.divider()
 uploaded_file = st.file_uploader("Upload a CSV", type=["csv","txt"])
 print(f"uploaded_file: {uploaded_file}")
 
+from io import StringIO
 
-###################
+if uploaded_file is not None:
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    string_data = stringio.read()
+
+    st.write(f"{type(uploaded_file)}")
+    st.write(f"{type(string_data)}")
+
+    st.write(f"File Contents: ")
+    st.code(string_data, language = "text")
+
+    st.write("File Uploaded!!")
+    st.success("File Uploaded!!")
+
+st.warning("File loading warning!")
+st.error("Error!")
+st.info("Here is a helpful tip!")
+
+st.divider()
+
+################################## 
+if 'count' not in st.session_state:
+    st.session_state.count = 0 
+
+if st.button("Increment"):
+    st.session_state.count += 1
+
+st.write(f"Hello there!, the current count value is {st.session_state.count}")
+
+########
+st.divider()
+
+st.title("Main Title") 
+st.header("Section Header") # Medium 
+st.subheader("Sub-section") # small 
+
+st.markdown("We have **bold** in this statement.")
+st.markdown("<h1 style='color: blue;'>Custom Html</h1>", unsafe_allow_html=True)
+
+st.divider()
+
+
+st.subheader("Level 5 - Extra")
+
+########################################
+import pandas as pd 
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(10,2), columns=['A','B'])
+#print(df)
+st.write("Streamlit Dataframe visualization")
+st.dataframe(df)
+
+st.write("stremlit Dataframe brachart")
+st.bar_chart(df)
+
+# 
+#st.image(r'')
+
+st.divider()
+
+###########################
+import time
+
+bar = st.progress(0)
+for percent in range(100):
+    time.sleep(0.1)
+    bar.progress(percent + 1)
+
+st.divider()
+
+################## 
+text_to_save = "1,2,3,4,5"
+st.download_button(
+    label="Download text file",
+    data =text_to_save,
+    file_name="dummy_csv.txt",
+    mime ="text/plain"
+)
