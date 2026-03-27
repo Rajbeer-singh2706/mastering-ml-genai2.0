@@ -92,6 +92,7 @@ st.write(picked_date)
 
 st.divider()
 
+##################################################################
 uploaded_file = st.file_uploader("Upload a csv", type=["csv", "txt"])
 
 from io import StringIO
