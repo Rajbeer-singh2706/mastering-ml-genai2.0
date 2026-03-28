@@ -26,6 +26,8 @@ def init_db():
     """
     )
 
+    
+
     conn.commit()
     print("DB operation successfull.")
     conn.close()

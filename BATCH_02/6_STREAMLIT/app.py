@@ -159,20 +159,22 @@ st.bar_chart(df)
 st.divider()
 
 ###########################
-import time
+# import time
 
-bar = st.progress(0)
-for percent in range(100):
-    time.sleep(0.1)
-    bar.progress(percent + 1)
+# bar = st.progress(0)
+# for percent in range(100):
+#     time.sleep(0.1)
+#     bar.progress(percent + 1)
 
-st.divider()
+# st.divider()
 
 ################## 
-text_to_save = "1,2,3,4,5"
-st.download_button(
-    label="Download text file",
-    data =text_to_save,
-    file_name="dummy_csv.txt",
-    mime ="text/plain"
-)
+# text_to_save = "1,2,3,4,5"
+# st.download_button(
+#     label="Download text file",
+#     data =text_to_save,
+#     file_name="dummy_csv.txt",
+#     mime ="text/plain"
+# )
+
+import pymupdf
