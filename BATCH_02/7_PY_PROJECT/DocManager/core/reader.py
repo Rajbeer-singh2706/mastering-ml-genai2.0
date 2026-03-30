@@ -1,6 +1,7 @@
 import pymupdf
 import os
 
+
 class PDFReader:
     def convert_pdf_to_images(self, pdf_path):
         doc = pymupdf.open(pdf_path)

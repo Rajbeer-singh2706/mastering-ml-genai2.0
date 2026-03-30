@@ -24,16 +24,17 @@ class DocumentService:
     def upload_document(self, uploaded_file, tags, description, lecture_date=None):
 
         # 1. Save file
-        file_path = self.file_manager.save_file(uploaded_file)
+       # file_path = self.file_manager.save_file(uploaded_file)
         
         # 2. Generate thumbnail
-        thumbnail_path = self.thumbnail_generator.generate_thumbnail(file_path)
+        #thumbnail_path = self.thumbnail_generator.generate_thumbnail(file_path)
         
         # 3. Get total pages
-        total_pages = self.thumbnail_generator.get_total_pages(file_path)
+        #total_pages = self.thumbnail_generator.get_total_pages(file_path)
         
         # 4. Convert to images
-        self.reader.convert_pdf_to_images(file_path)
+       # self.reader.convert_pdf_to_images(file_path)
+       
         # 5. create required variables : upload date
 
         upload_date = datetime.now().strftime("%Y-%m-%d")
