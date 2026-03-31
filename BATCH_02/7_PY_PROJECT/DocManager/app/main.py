@@ -42,42 +42,42 @@ st.title("🗂️ Smart PDF Document Manager")
 
 st.divider()
 
-# st.subheader("⚙️ Admin Controls")
-# if st.button("🧹 Clean Database"):
-#     st.session_state.show_reset = True
+st.subheader("⚙️ Admin Controls")
+if st.button("🧹 Clean Database"):
+    st.session_state.show_reset = True
 
-# if st.session_state.show_reset:
-#     # mass password text input
-#     password_input = st.text_input("Enter Admin Password", type="password")
+if st.session_state.show_reset:
+    # mass password text input
+    password_input = st.text_input("Enter Admin Password", type="password")
 
-#     if st.button("Confirm Reset"):
-#         if password_input == ADMIN_PASSWORD:
+    if st.button("Confirm Reset"):
+        if password_input == ADMIN_PASSWORD:
 
-#             import shutil # os
+            import shutil # os
 
-#             # Delete DB
-#             db_file_dir = os.path.join("data", "documents.db")
-#             if os.path.exists(db_file_dir):
-#                 os.remove(db_file_dir)
+            # Delete DB
+            db_file_dir = os.path.join("data", "documents.db")
+            if os.path.exists(db_file_dir):
+                os.remove(db_file_dir)
 
-#             # Delete storage
+            # Delete storage
 
-#             pdf_dir = os.path.join("storage", "pdfs")
-#             thumbnail_dir = os.path.join("storage", "thumbnails")
+            pdf_dir = os.path.join("storage", "pdfs")
+            thumbnail_dir = os.path.join("storage", "thumbnails")
 
-#             shutil.rmtree(pdf_dir, ignore_errors=True)
-#             shutil.rmtree(thumbnail_dir, ignore_errors=True)
+            shutil.rmtree(pdf_dir, ignore_errors=True)
+            shutil.rmtree(thumbnail_dir, ignore_errors=True)
 
-#             os.makedirs(pdf_dir, exist_ok=True)
-#             os.makedirs(thumbnail_dir, exist_ok=True)
+            os.makedirs(pdf_dir, exist_ok=True)
+            os.makedirs(thumbnail_dir, exist_ok=True)
 
-#             st.success("✅ System reset successfully. Restart app.")
-#             st.session_state.show_reset = False
-#             st.rerun()
-#         else :
-#             st.error("❌ Incorrect password")
-#             st.session_state.show_reset = False
-#             st.rerun()
+            st.success("✅ System reset successfully. Restart app.")
+            st.session_state.show_reset = False
+            st.rerun()
+        else :
+            st.error("❌ Incorrect password")
+            st.session_state.show_reset = False
+            st.rerun()
 
 
 
