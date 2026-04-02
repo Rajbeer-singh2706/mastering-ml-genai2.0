@@ -19,4 +19,3 @@ class Calulcator:
     
     def get_history(self):
         print(self.__history)
-

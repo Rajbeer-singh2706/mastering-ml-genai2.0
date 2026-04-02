@@ -1,5 +1,7 @@
-from utils import Calulcator
-from utils import hello_world
+
+### IMPORT ALL from Util folder , As we have already imported in __init__.py
+
+from utils import * 
 
 c = Calulcator()
 
